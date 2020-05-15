@@ -23,6 +23,14 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.mycompany.covidtracker",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDDFOnwzlx7K9StypnJ-9z1akqixVhM0ms"
+        }
+      }
     }
   }
 }
