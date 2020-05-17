@@ -16,13 +16,13 @@ export default Recovered = props =>{
 
 const styles=StyleSheet.create({
     card:{
-        width:350,
+        width:'90%',
         maxWidth:'90%',
-        marginTop:30,
+        marginTop:'8%',
       },
       innerView:{
         flexDirection:'row',
-        padding:8,
+        padding:3,
         justifyContent:'space-between',
       } , 
       image:{
@@ -31,17 +31,18 @@ const styles=StyleSheet.create({
         resizeMode:'contain',
       },
       cases:{
-        fontSize:16,
+        fontSize:15,
         color:'#43CC2E',
-        marginTop:6,
+        marginTop:'1.5%',
         fontWeight:'bold',
+        marginRight:'1.5%'
       },
       boldtextContainer:{
         fontWeight:'bold',
         fontSize:16,
-        marginVertical:5,
-        width:150,
-        marginLeft:13,
+        marginVertical:'2%',
+        width:'56%',
+        marginLeft:'6%',
       },
       imageView:{
         marginLeft:1,

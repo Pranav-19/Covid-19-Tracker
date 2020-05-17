@@ -16,13 +16,13 @@ export default TotalConfirmedCases = props =>{
 
 const styles=StyleSheet.create({
     card:{
-        width:350,
+        width:'90%',
         maxWidth:'90%',
-        marginTop:50,
+        marginTop:'14%',
       },
       innerView:{
         flexDirection:'row',
-        padding:6,
+        padding:3,
         justifyContent:'space-between',
       } , 
       image:{
@@ -31,18 +31,19 @@ const styles=StyleSheet.create({
         resizeMode:'contain',
       },
       cases:{
-        fontSize:16,
+        fontSize:15,
         color:'#45c4ff',
-        marginTop:6,
-        marginLeft:15,
+        marginTop:'2%',
+        marginLeft:'3%',
         fontWeight:'bold',
+        marginRight:'1.5%'
       },
       boldtextContainer:{
         fontWeight:'bold',
         fontSize:16,
-        marginVertical:5,
-        width:150,
-        marginLeft:10,
+        marginVertical:'2%',
+        width:'55%',
+        marginLeft:'4%',
       },
       imageView:{
         marginLeft:1,

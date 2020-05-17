@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import MapView from 'react-native-maps';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
-import {mapStyle} from '../styles/mapStyle'
+import MapView,{PROVIDER_GOOGLE}  from 'react-native-maps';
+import { StyleSheet, View } from 'react-native';
+// import {mapStyle} from '../styles/mapStyle'
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import CountryModal from '../components/CountryModal'
@@ -24,6 +24,7 @@ export default class WorldMap extends React.Component {
         console.log(permissions);
         if (status === 'granted') {
           let location = await Location.getCurrentPositionAsync({});
+          console.log(location)
           this.setState({ location });
         } else {
           console.error('Location permission not granted');
@@ -42,9 +43,16 @@ export default class WorldMap extends React.Component {
     
     GeocodeAsync = async ({nativeEvent})=>{
         try{
+        console.log("Pressed")
         this.setState({animating:true})
         const result = await Location.reverseGeocodeAsync(nativeEvent.coordinate)
-        const {country}=result[0]
+        console.log(result)
+        if(result.length===0 || !'country' in result[0] || result[0].country===null)
+        {
+          this.setState({animating:false})
+           return;
+        }
+        const {country}=result[0]  
         const data= await fetchByCountry(country)
         console.log(data)
         this.setState({data:data, animating:false})
@@ -61,12 +69,13 @@ export default class WorldMap extends React.Component {
         <View style={styles.container}>  
         {this.state.animating && (<LoadingModal visible={this.state.animating} />)}
         { this.state.isVisible &&  (<CountryModal visible ={this.state.isVisible} {...this.state.data} onToggle={this.toggleModal}/>)}
-        <MapView style={styles.mapStyle} initialRegion={{
+        <MapView style={styles.mapStyle}   initialRegion={{
         latitude: 37.78825,
         longitude: -122.4324,
-        latitudeDelta: 922,
-        longitudeDelta: 922,
-        }}  customMapStyle={mapStyle} provider='google' onPress={this.GeocodeAsync} />  
+        latitudeDelta: 92.2,
+        longitudeDelta: 92.2,
+        }}  onPress={this.GeocodeAsync}
+        />  
         </View>  
       );
     }
@@ -76,7 +85,6 @@ export default class WorldMap extends React.Component {
     container: {
       flex: 1,
       backgroundColor: '#fff',
-    //   alignItems: 'center',
       justifyContent: 'center',
     },
     mapStyle: {

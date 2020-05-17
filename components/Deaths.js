@@ -16,13 +16,13 @@ export default Deaths = props =>{
 
 const styles=StyleSheet.create({
     card:{
-        width:350,
+        width:'90%',
         maxWidth:'90%',
-        marginTop:30,
+        marginTop:'8%',
       },
       innerView:{
         flexDirection:'row',
-        padding:8,
+        padding:3,
         justifyContent:'space-between',
       } , 
       image:{
@@ -33,15 +33,16 @@ const styles=StyleSheet.create({
       cases:{
         fontSize:16,
         color:'#666666',
-        marginTop:6,
+        marginTop:'1.5%',
         fontWeight:'bold',
+        marginRight:'1.5%'
       },
       boldtextContainer:{
         fontWeight:'bold',
         fontSize:16,
-        marginVertical:5,
-        width:150,
-        marginLeft:13,
+        marginVertical:'2%',
+        width:'56%',
+        marginLeft:'3%',
       },
       imageView:{
         marginLeft:1,

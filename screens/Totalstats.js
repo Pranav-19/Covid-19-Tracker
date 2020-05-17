@@ -9,7 +9,7 @@ import LoadingModal from '../components/loadingModal'
 export default class Totalstats extends React.Component
 {
   state={
-    stats:[],
+    stats:{},
     visible:false
   }
   componentDidMount()
@@ -36,14 +36,16 @@ export default class Totalstats extends React.Component
   render()
   {
     return (
+      <ScrollView style={{backgroundColor:'fff'}} >
       <View style={styles.container}>
       {this.state.visible && (<LoadingModal visible={this.state.visible} />)}
-      <TotalConfirmedCases cases={this.state.stats.total_cases}/>
-      <CurrentlyInfected cases={this.state.stats.currently_infected}/>
-      <Recovered cases={this.state.stats.recovery_cases}/>
-      <Deaths cases={this.state.stats.death_cases}/>
-      <Text style={styles.text}>Last updated on: {this.state.stats.last_update}</Text>         
+      <TotalConfirmedCases cases={this.state.stats.cases}/>
+      <CurrentlyInfected cases={this.state.stats.active}/>
+      <Recovered cases={this.state.stats.recovered}/>
+      <Deaths cases={this.state.stats.deaths}/>
+      {/* <Text style={styles.text}>Last updated on: {this.state.stats.last_update}</Text>          */}
       </View>
+      </ScrollView>
   );
 }
 }
@@ -52,11 +54,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding:10,
+    padding:'3%',
     alignItems:'center',
   },
   text:{
     fontSize:16,
-    marginTop:15,
+    marginTop:'4%',
   }
 });

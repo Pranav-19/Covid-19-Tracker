@@ -7,7 +7,7 @@ export default class CountryStats extends React.Component
 {
   state={
     countries:[],
-    last_update:"",
+    // last_update:"",
     visible:false
   }
   componentDidMount()
@@ -17,14 +17,15 @@ export default class CountryStats extends React.Component
   region_stats= async ()=>
    {
      try{
-       this.setState({visible:true})
+      this.setState({visible:true})
       const data=await fetchCountryStats()
-      const {rows}=data
-      rows.shift()  
-      // console.log(results)
+      
+      // console.log("hello")
+      // console.log("received:"+data)
       this.setState({
-        countries:rows,
-        last_update:data.last_update, visible:false
+        countries:data,
+        // last_update:data.last_update,
+         visible:false
       })
      }
      catch(err)
@@ -38,9 +39,10 @@ export default class CountryStats extends React.Component
     return (
       <View style={styles.container}>
       {this.state.visible && (<LoadingModal visible={this.state.visible} />)}
-      <Text style={styles.text}>Last updated on: {this.state.last_update}</Text>    
+      {/* <Text style={styles.text}>Last updated on: {this.state.last_update}</Text>     */}
       {this.state.countries && 
-      ( <FlatList data={this.state.countries} renderItem={({item})=> <CountryCard {...item} /> }
+      ( <FlatList data={this.state.countries} renderItem={({item})=> {
+        return <CountryCard {...item} />} }
       keyExtractor={item => item.country }  />)
       } 
       </View> 
@@ -52,11 +54,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding:10,
+    padding:'2%',
     alignItems:'center',
   },
   text:{
     fontSize:16,
-    marginTop:15,
+    marginTop:'3%',
   }
 });
