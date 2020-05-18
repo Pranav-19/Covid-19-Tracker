@@ -36,7 +36,7 @@ export default class Totalstats extends React.Component
   render()
   {
     return (
-      <ScrollView style={{backgroundColor:'fff'}} >
+      <ScrollView style={{backgroundColor:'#fff'}} >
       <View style={styles.container}>
       {this.state.visible && (<LoadingModal visible={this.state.visible} />)}
       <TotalConfirmedCases cases={this.state.stats.cases}/>

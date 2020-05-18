@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View,ScrollView ,FlatList} from 'react-native';
+import { StyleSheet, Text, View ,FlatList} from 'react-native';
+import {SearchBar} from 'react-native-elements'
 import CountryCard from '../components/countryCard'
 import {fetchCountryStats} from '../api'
 import LoadingModal from '../components/loadingModal'
@@ -8,7 +9,10 @@ export default class CountryStats extends React.Component
   state={
     countries:[],
     // last_update:"",
-    visible:false
+    visible:false,
+    arrayHolder:[],
+    searchText:"",
+    
   }
   componentDidMount()
   {
@@ -23,7 +27,7 @@ export default class CountryStats extends React.Component
       // console.log("hello")
       // console.log("received:"+data)
       this.setState({
-        countries:data,
+        countries:data,arrayHolder:data,
         // last_update:data.last_update,
          visible:false
       })
@@ -33,13 +37,29 @@ export default class CountryStats extends React.Component
        console.log(err)
      }
    }
+   searchFilter =(text)=>
+   {
+      this.setState({searchText:text})
+      const newCountries=this.state.arrayHolder.filter( item =>{
+        const itemData= item.country.toUpperCase()
+        const textData= text.toUpperCase()
+        return itemData.indexOf(textData) >- 1
+      })
+      this.setState({countries:newCountries})
+   }
 
   render()
   {
     return (
       <View style={styles.container}>
+        <View style={styles.searchBar}>
+          <SearchBar placeholder="Search a country" lightTheme
+          round={true} onChangeText={text => this.searchFilter(text)}
+          autoCorrect={false} value={this.state.searchText} 
+          />
+        </View>
       {this.state.visible && (<LoadingModal visible={this.state.visible} />)}
-      {/* <Text style={styles.text}>Last updated on: {this.state.last_update}</Text>     */}
+      {/* { this.state.message && (<Text style={styles.text}>{this.state.message}</Text>)}     */}
       {this.state.countries && 
       ( <FlatList data={this.state.countries} renderItem={({item})=> {
         return <CountryCard {...item} />} }
@@ -60,5 +80,9 @@ const styles = StyleSheet.create({
   text:{
     fontSize:16,
     marginTop:'3%',
+  },
+  searchBar:{
+    width:'98%',
+    backgroundColor:'#fff',
   }
 });

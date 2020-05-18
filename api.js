@@ -38,21 +38,4 @@ export const fetchByCountry = async (country)=>
     else
         return data
 
-
-    // const {rows}=data
-    // if(rows.length===0)
-    //     return{ 
-    //      "total_cases": "NA",
-    //     "total_deaths": "NA",
-    //     "total_recovered": "NA",
-    //     "active_cases": "NA"}
-    // if(rows[0].country===country)
-    // return rows[0]
-    // else
-    // return {
-    //     "total_cases": "NA",
-    //     "total_deaths": "NA",
-    //     "total_recovered": "NA",
-    //     "active_cases": "NA"
-    // }
 }
